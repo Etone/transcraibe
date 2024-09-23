@@ -28,6 +28,12 @@ dependencies {
     implementation("io.micronaut.serde:micronaut-serde-jackson")
 
     implementation("com.azure:azure-ai-openai:1.0.0-beta.11")
+    implementation(
+        group = "com.microsoft.cognitiveservices.speech",
+        name = "client-sdk",
+        version = "1.40.0",
+        ext = "jar"
+    )
 
     compileOnly("io.micronaut:micronaut-http-client")
     runtimeOnly("ch.qos.logback:logback-classic")

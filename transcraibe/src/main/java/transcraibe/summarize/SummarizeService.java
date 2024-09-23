@@ -2,13 +2,12 @@ package transcraibe.summarize;
 
 import com.azure.ai.openai.OpenAIAsyncClient;
 import com.azure.ai.openai.models.*;
-import io.micronaut.context.annotation.Value;
 import jakarta.inject.Inject;
 import jakarta.inject.Singleton;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import reactor.core.publisher.Mono;
-import transcraibe.config.OpenAIModelConfig;
+import transcraibe.config.OpenAIModelConfigProperties;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,7 +16,7 @@ import java.util.List;
 @Singleton
 public class SummarizeService {
 
-    private final OpenAIModelConfig modelConfig;
+    private final OpenAIModelConfigProperties modelConfig;
     private final OpenAIAsyncClient client;
 
     Logger log = LoggerFactory.getLogger(SummarizeService.class);
@@ -56,19 +55,15 @@ public class SummarizeService {
             """;
 
     @Inject
-    public SummarizeService(OpenAIModelConfig modelConfig, OpenAIAsyncClient client) {
+    public SummarizeService(OpenAIModelConfigProperties modelConfig, OpenAIAsyncClient client) {
         this.modelConfig = modelConfig;
         this.client = client;
     }
 
     public Mono<String> summarize(String transcript) {
-        log.info("Summarizing Transcript");
         log.debug("Transcript = {}", transcript);
-
         var context = prepareContext(transcript);
-
         var completion = client.getChatCompletions(modelConfig.gpt(), new ChatCompletionsOptions(context));
-
         return completion.map(ChatCompletions::getChoices)
                 .map(list -> list.stream().findFirst().orElseThrow().getMessage().getContent());
     }

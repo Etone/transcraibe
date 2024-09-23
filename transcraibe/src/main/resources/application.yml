@@ -1,11 +1,14 @@
 azure:
     openai:
         client:
-            endpoint: https://transcraibe-oai.openai.azure.com/
+            endpoint: PROFILE
             key: PLACE IN PROFILE
         model:
             gpt: gpt-4o
             whisper: whisper
+    speech:
+        region: PROFILE
+        key: PLACE IN PROFILE
 endpoints:
     all:
         enabled: true
@@ -17,3 +20,6 @@ micronaut:
         max-request-size: 524288000
         multipart:
             max-file-size: 524288000
+logger:
+    levels:
+        transcraibe.transcribe.TranscribeService: DEBUG
