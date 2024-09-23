@@ -1,0 +1,19 @@
+azure:
+    openai:
+        client:
+            endpoint: https://transcraibe-oai.openai.azure.com/
+            key: PLACE IN PROFILE
+        model:
+            gpt: gpt-4o
+            whisper: whisper
+endpoints:
+    all:
+        enabled: true
+        sensitive: false
+micronaut:
+    application:
+        name: transcraibe
+    server:
+        max-request-size: 524288000
+        multipart:
+            max-file-size: 524288000
