@@ -4,7 +4,7 @@ metadata:
   name: transcraibe-svc
 spec:
   selector:
-    app.kubernetes.io/name: transcraibe
+    app: transcraibe
   ports:
     - protocol: TCP
       port: 80
