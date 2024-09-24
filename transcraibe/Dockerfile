@@ -1,4 +1,9 @@
 FROM eclipse-temurin:17-jre
+
+# Install GStreamer, needed to support mp3 file uploads for audio files
+RUN apt-get update
+RUN apt-get install libgstreamer1.0-dev libgstreamer-plugins-base1.0-dev libgstreamer-plugins-bad1.0-dev gstreamer1.0-plugins-base gstreamer1.0-plugins-good gstreamer1.0-plugins-bad gstreamer1.0-plugins-ugly gstreamer1.0-libav gstreamer1.0-tools gstreamer1.0-x gstreamer1.0-alsa gstreamer1.0-gl gstreamer1.0-gtk3 gstreamer1.0-qt5 gstreamer1.0-pulseaudio -y
+
 WORKDIR /home/app
 COPY --link layers/libs /home/app/libs
 COPY --link layers/app /home/app/

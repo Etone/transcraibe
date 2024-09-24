@@ -17,7 +17,7 @@ spec:
       containers:
       - name: backend
         image: etone/transcraibe-be:0.1
-
+        imagePullPolicy: Always
         env:
         - name: OPENAI_ENDPOINT
           valueFrom:
