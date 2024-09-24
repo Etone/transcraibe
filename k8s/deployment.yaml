@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: transcraibe
+  labels:
+    app: transcraibe
+spec:
+  replicas: 0
+  selector:
+    matchLabels:
+      app: transcraibe
+  template:
+    metadata:
+      labels:
+        app: transcraibe
+    spec:
+      containers:
+      - name: backend
+        image: etone/transcaibe-be:0.0.1
+        ports:
+        - containerPort: 8080
