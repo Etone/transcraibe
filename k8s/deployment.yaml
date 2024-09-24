@@ -5,7 +5,7 @@ metadata:
   labels:
     app: transcraibe
 spec:
-  replicas: 0
+  replicas: 1
   selector:
     matchLabels:
       app: transcraibe
@@ -17,5 +17,26 @@ spec:
       containers:
       - name: backend
         image: etone/transcaibe-be:0.0.1
+        env:
+        - name: OPENAI_ENDPOINT
+          valueFrom:
+            secretKeyRef:
+              key: azure.openai.client.endpoint
+              name: transcraibe-be
+        - name: OPENAI_KEY
+          valueFrom:
+            secretKeyRef:
+              key: azure.openai.client.key
+              name: transcraibe-be
+        - name: AZURE_SPEECH_REGION
+          valueFrom:
+            secretKeyRef:
+              key: azure.speech.region
+              name: transcraibe-be
+        - name: AZURE_SPEECH_KEY
+          valueFrom:
+            secretKeyRef:
+              key: azure.speech.key
+              name: transcraibe-be
         ports:
         - containerPort: 8080

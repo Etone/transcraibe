@@ -1,14 +1,14 @@
 azure:
     openai:
         client:
-            endpoint: PROFILE
-            key: PLACE IN PROFILE
+            endpoint: ${OPENAI_ENDPOINT}
+            key: ${OPENAI_KEY}
         model:
             gpt: gpt-4o
             whisper: whisper
     speech:
-        region: PROFILE
-        key: PLACE IN PROFILE
+        region: ${AZURE_SPEECH_REGION}
+        key: ${AZURE_SPEECH_KEY}
 endpoints:
     all:
         enabled: true
