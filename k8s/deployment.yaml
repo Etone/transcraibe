@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: backend
-        image: etone/transcraibe-be:0.0.1
+        image: etone/transcraibe-be:0.0.2
 
         env:
         - name: OPENAI_ENDPOINT
