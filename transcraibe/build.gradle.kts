@@ -1,3 +1,5 @@
+import com.bmuschko.gradle.docker.tasks.image.DockerBuildImage
+
 plugins {
     id("com.github.johnrengelman.shadow") version "8.1.1"
     id("io.micronaut.application") version "4.4.2"
@@ -72,6 +74,11 @@ micronaut {
         replaceLogbackXml = true
     }
 }
+
+tasks.named<DockerBuildImage>("dockerBuild") {
+    images.add("etone/transcraibe:$version")
+}
+
 
 
 
