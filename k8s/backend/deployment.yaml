@@ -20,24 +20,18 @@ spec:
         imagePullPolicy: Always
         env:
         - name: OPENAI_ENDPOINT
-          valueFrom:
-            secretKeyRef:
-              key: azure.openai.client.endpoint
-              name: transcraibe-be
+          value: https://westeurope.api.cognitive.microsoft.com/
         - name: OPENAI_KEY
           valueFrom:
             secretKeyRef:
-              key: azure.openai.client.key
-              name: transcraibe-be
+              key: attribute.primary_access_key
+              name: transcraibe-oai-secret
         - name: AZURE_SPEECH_REGION
-          valueFrom:
-            secretKeyRef:
-              key: azure.speech.region
-              name: transcraibe-be
+          value: westeurope
         - name: AZURE_SPEECH_KEY
           valueFrom:
             secretKeyRef:
-              key: azure.speech.key
-              name: transcraibe-be
+              key: attribute.primary_access_key
+              name: transcraibe-speech-secret
         ports:
         - containerPort: 8080

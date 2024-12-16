@@ -1,0 +1,47 @@
+
+apiVersion: cognitiveservices.azure.upbound.io/v1beta1
+kind: Account
+metadata:
+  name: transcraibe-speech-service
+spec:
+  forProvider:
+    kind: SpeechServices
+    location: West Europe
+    resourceGroupName: transcraibe
+    skuName: S0
+  writeConnectionSecretToRef:
+    name: transcraibe-speech-secret
+    namespace: transcraibe
+---
+apiVersion: cognitiveservices.azure.upbound.io/v1beta1
+kind: Account
+metadata:
+  name: transcraibe-oai
+  labels:
+    cognitive-account-for: transcraibe
+spec:
+  forProvider:
+    kind: OpenAI
+    location: West Europe
+    resourceGroupName: transcraibe
+    skuName: S0
+  writeConnectionSecretToRef:
+    name: transcraibe-oai-secret
+    namespace: transcraibe
+---
+apiVersion: cognitiveservices.azure.upbound.io/v1beta1
+kind: Deployment
+metadata:
+  name: transcraibe-llm
+spec:
+  forProvider:
+    cognitiveAccountIdSelector:
+      matchLabels:
+        cognitive-account-for: transcraibe
+    model:
+      - format: OpenAI
+        name: gpt-4o-mini
+        version: "2024-07-18"
+    scale:
+      - capacity : 100
+        type: GlobalStandard

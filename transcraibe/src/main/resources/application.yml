@@ -4,7 +4,7 @@ azure:
             endpoint: ${OPENAI_ENDPOINT}
             key: ${OPENAI_KEY}
         model:
-            gpt: gpt-4o
+            gpt: transcraibe-llm
             whisper: whisper
     speech:
         region: ${AZURE_SPEECH_REGION}
